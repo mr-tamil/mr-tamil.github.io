@@ -80,6 +80,7 @@ html {
     transition: background-color 0.3s ease;
     z-index: 1000;
     padding-left: 17px;
+    padding-right: 17px;
 }
 
 .navbar.scrolled {
@@ -505,9 +506,6 @@ html {
 }
 
 /* Social Media Container */
-.footer {
-    display: grid;
-}
 
 .social-icon-container {
     display: flex;
@@ -520,7 +518,7 @@ html {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    gap: 15px;
 
 }
 
@@ -536,11 +534,16 @@ html {
 }
 
 /* Footer */
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .copyrights {
-    display: grid;
-    height: 10vh;
-    gap: 10px;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
+    height: 88px;
+    gap: 30px;
 }
 
 .copyrights .icon-container {
