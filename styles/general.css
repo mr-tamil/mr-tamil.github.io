@@ -1,8 +1,11 @@
 /* General */
 
-/* Load Avenir Light font */
-/* @import url('https://fonts.googleapis.com/css2?family=Avenir:wght@300&display=swap'); */
-
+body, html {
+    overflow-x: hidden;
+}
+*, *::before {
+    box-sizing: border-box;
+}
 
 body {
     background-color: #333b50;
@@ -61,8 +64,6 @@ html {
 .floating-box {
     display: flex;
     background-color: #333b50;
-    padding-top: 80px;
-    padding-bottom: 40px;
 }
 
 /* Navigation Bar */
@@ -91,20 +92,16 @@ html {
 }
 
 .navbar .buttons div {
-    box-sizing: border-box;
     display: inline-block;
 }
 
-@media (max-width:501px) {
-    .navbar .buttons {
-        display: none;
-    }
-}
 
 .navbar a {
     padding: 10px 12px;
     color: rgb(249, 249, 249);
     text-decoration: none;
+    font-size: 16px;
+    font-weight: 700;
 }
 
 
@@ -120,7 +117,7 @@ html {
 
 .header .background-image {
     /* background-image: url("../images/background/cover.jpg"); */
-    background-position: right center;
+    background-position: center top;
     opacity: 0.45;
 }
 
@@ -180,12 +177,31 @@ html {
     background-color: rgba(10, 17, 36, 0.7);
 }
 
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 150px;
+}
+
+.section-card-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 25px;
+    margin-bottom: 30px; /* best use 70px (here 30px) use 40px below */
+}
+
 .section-card-number {
     color: rgb(190, 199, 213);
 }
 
 .section-card-description,
 .section-card-title {
+    margin: 0;
     color: rgb(249, 249, 249);
 }
 
@@ -197,8 +213,9 @@ html {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 65px;
-    width: 50%;
+    max-width: 700px;
+    padding: 48px 50px 60px 50px;
+    margin-bottom: 150px;
 }
 
 .about-me .icon {
@@ -209,9 +226,10 @@ html {
     color: #f9f9f9;
     font-size: 18px;
     font-weight: 400;
-    width: 65%;
     text-align: center;
     line-height: 35px;
+    padding-top: 48px;
+    padding-bottom: 40px;
 }
 
 .button {
@@ -230,42 +248,50 @@ html {
 }
 
 .contact .text {
-    width: 40%;
+    flex: 1;
+    width: 100%;
 }
-
-.contact .floating-box .title {
-    font-weight: 400;
-}
-
-.contact .floating-box .text p {
-    font-weight: 400;
-    line-height: 1.5;
-}
-
-.contact .floating-box .text {
-    color: white;
-}
-
-.contact a {
-    text-decoration: none;
-    color: white;
-}
-
 
 .contact .floating-box {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 60%;
-    padding: 100px;
-    padding-bottom: 0;
+    max-width: 1000px;
+    padding-bottom: 60px;
 }
 
 .contact .rows {
     display: flex;
-    gap: 50px;
+    gap: 30px;
     justify-content: space-between;
     align-items: baseline;
+    padding: 48px 100px 60px 100px;
+    flex-wrap: wrap;
+}
+
+.contact .floating-box .title {
+    font-weight: 400;
+    font-size: 32px;
+}
+
+.contact .floating-box .text p {
+    font-size: 16px;
+    text-decoration-style: solid;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.contact .floating-box .text {
+    color: rgb(249, 249, 249);
+}
+
+.contact .para {
+    color: white;
+}
+
+.contact a {
+    text-decoration: none;
+    color: rgb(249, 249, 249);
 }
 
 
@@ -286,6 +312,7 @@ html {
     margin: 0 auto;
     width: 100%;
     max-width: 800px;
+    margin-top: 40px;
 }
 
 .progress-container {
@@ -356,9 +383,10 @@ html {
 }
 
 .slides-container {
-    max-width: 1000px;
+    max-width: 700px;
     position: relative;
     margin: auto;
+    margin-top: 40px;
 }
 
 .slides-container::before {
@@ -415,6 +443,10 @@ html {
 }
 
 /* Form Container */
+.form {
+    flex: 1;
+    width: 100%;
+}
 .form-container {
     max-width: 400px;
     margin: 0 auto;
@@ -424,7 +456,7 @@ html {
 
 .form-container input,
 .form-container textarea {
-    width: calc(100% - 16px);
+    width: 100%;
     padding: 8px;
     margin: 5px 0;
     font-size: 15px;
@@ -481,25 +513,25 @@ html {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 20vh;
+    height: 40px;
 }
 
 .social-icons {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
 }
 
 .whatsapp-icon,
 .skype-icon,
 .linkedin-icon {
     width: 25px;
-    padding: 10px;
 }
 
 .mail-icon {
     margin-top: 4px;
-    margin-left: 6px;
     width: 33px;
 }
 
@@ -515,10 +547,11 @@ html {
     display: flex;
     justify-content: center;
     align-items: center;
+    padding-left: 10px;
 }
 
 .footer .icon {
-    width:6vh;
+    width: 25px;
     height: auto;
 }
 
@@ -583,29 +616,168 @@ html {
     }
 }
 
-/* Burger Button Styling */
+/* Burger button default state */
 .burger-button {
-    top: 20px;
-    right: 20px;
     display: none;
     flex-direction: column;
-    gap: 5px;
+    justify-content: space-between;
+    width: 20px;
+    height: 15px;
     cursor: pointer;
-    z-index: 1300;
+    position: relative;
+    z-index: 999;
+    transition: transform 0.3s ease;
 }
 
-.burger-button .line {
-    width: 25px;
-    height: 3px;
-    background-color: white;
-    border-radius: 2px;
-    transition: all 0.3s ease; /* Smooth transition for transformation */
+.burger-button span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 1); /* Default color */
+    /* border-radius: 3px; */
+    transition: all 0.5s ease;
+}
+
+/* Rotate the burger button on active */
+.burger-button.active {
+    animation: rotate360 0.5s forwards;
+}
+
+/* Backward rotation for closing */
+.burger-button.closing {
+    animation: rotate360-reverse 0.5s forwards;
+}
+
+/* Animation for 360° rotation */
+@keyframes rotate360 {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Backward 360° rotation */
+@keyframes rotate360-reverse {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+/* Transform lines to create a plus (+) sign */
+.burger-button.active span:nth-child(1) {
+    transform: rotate(45deg) translateY(4px) translateX(4px);
+}
+
+.burger-button.active span:nth-child(2) {
+    opacity: 0; /* Hide the middle line */
+}
+
+.burger-button.active span:nth-child(3) {
+    transform: rotate(-45deg) translateY(-5px) translateX(5px);
+}
+
+/* Reset transformations when closing */
+.burger-button.closing span:nth-child(1),
+.burger-button.closing span:nth-child(3) {
+    transform: rotate(0deg) translateY(0) translateX(0);
+}
+
+.burger-button.closing span:nth-child(2) {
+    opacity: 1; /* Restore the middle line */
 }
 
 
-/* Media Query for Displaying the Burger Button */
-@media (max-width: 501px) {
+
+@media (max-width: 930px) {
+    .contact .rows {
+        padding: 28px 70px 60px 70px;
+    }
+}
+
+@media (max-width: 768px) {
     .burger-button {
         display: flex;
     }
+    .navbar .buttons {
+        display: none;
+    }
+
+    .contact .rows {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .contact .rows {
+        flex-direction: column;
+        padding: 18px 60px 60px 60px;
+    }
+    .contact .floating-box {
+        padding-bottom: 40px;
+    }
+    .content {
+        padding: 30px;
+    }
+    .about-me .floating-box {
+        max-width: 600px;
+        padding: 48px 40px 60px 40px;
+    }
+}
+
+@media (max-width: 400px) {
+    .contact .rows {
+        flex-direction: column;
+        padding: 0px 40px 60px 40px;
+    }
+    .contact .floating-box {
+        padding-bottom: 40px;
+    }
+    .content {
+        padding: 20px;
+    }
+    .about-me .floating-box {
+        max-width: 600px;
+        padding: 48px 30px 60px 30px;
+    }
+}
+
+
+/* Universal styles for all browsers
+    For Firefox: thin scrollbar
+    Thumb color and track color
+*/
+/* html {
+    scrollbar-width: thin;
+    scrollbar-color: #bfbfbf #f5f5f5;
+} */
+
+/* WebKit-based browsers (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+    width: 10px; /* Thin scrollbar */
+    height: 10px; /* Thin horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+    background: #f5f5f5; /* Light background for the track */
+    /* border-radius: 10px; */
+}
+
+::-webkit-scrollbar-thumb {
+    background: #bfbfbf; /* Stylish gradient thumb */
+    border-radius: 10px; /* Rounded thumb for modern look */
+    border: 2px solid #f5f5f5; /* Creates space around the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #b0b0b0, #a3a3a3); /* Hover effect with gradient reversal */
+}
+
+/* Optional: Corner styling (where horizontal & vertical scrollbars meet) */
+::-webkit-scrollbar-corner {
+    background: #f5f5f5; /* Match track background */
 }
