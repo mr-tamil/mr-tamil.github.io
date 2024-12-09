@@ -4,19 +4,20 @@ const navbar = document.querySelector(".navbar");
 // select the header
 const header = document.querySelector("#index-cover-background");
 
-// add the scroll event listener to the window
+let isScrolling = false;
 window.addEventListener('scroll', () => {
-    // check if the page has been scrolled down (greater than 0)
-    if (window.scrollY > 0) {
-        navbar.classList.add('scrolled');
+    if (!isScrolling) {
+        window.requestAnimationFrame(()=> {
+            if (window.scrollY > 0) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+            header.style.backgroundPositionY = `${window.scrollY * 0.5}px`;
+            isScrolling = false;
+        });
+        isScrolling = true;
     }
-    else {
-        navbar.classList.remove('scrolled');
-    }
-
-    // header background image scroll speed
-    const scrollPosition = scrollY;
-    header.style.backgroundPositionY = `${scrollPosition * 0.5}px`;
 });
 
 
@@ -26,6 +27,7 @@ document.getElementById('contactForm').addEventListener('submit', function(event
 
     let form = event.target;
     let formData = new FormData(form);
+    const confirmationMessage = document.querySelector('.confirmation-message');
 
     fetch('https://formspree.io/f/xnnqvwnv', {
         method: 'POST',
@@ -36,25 +38,31 @@ document.getElementById('contactForm').addEventListener('submit', function(event
     })
     .then(response => {
         if (response.ok) {
-        document.querySelector('.confirmation-message').style.display = 'block';
-        form.reset();
+            confirmationMessage.textContent = "I'll respond promptly";
+            form.reset();
 
-        setTimeout(() => {
-            document.querySelector('.confirmation-message').style.display = 'none';
-        }, 5000);
         } else {
-        alert('There was an error submitting the form.');
+            confirmationMessage.textContent = "There was an error submitting the form.";
         }
+        confirmationMessage.style.display = 'block';
+        setTimeout(() => {
+            confirmationMessage.style.display = 'none';
+        }, 5000);
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('There was an error submitting the form.');
+        confirmationMessage.style.display = 'block';
+        confirmationMessage.textContent = 'There was an error submitting the form. Please try again.';
+        setTimeout(() => {
+            confirmationMessage.style.display = 'none';
+        }, 5000);
     });
 });
 
+
 // Slides
 let slideIndex = 0;
-let slideInterval;
+let slideInterval = null;
 showSlides();
 
 function showSlides() {
@@ -136,22 +144,34 @@ function removeAnimationFromNavLinks() {
 // Toggle the side navbar and burger button when clicked
 burgerButton.addEventListener('click', (e) => {
     e.stopPropagation();
-    burgerButton.classList.toggle("active");
-    sideNavbar.classList.toggle('active');
 
-    // Add animation to nav links when the side navbar is open
-    if (sideNavbar.classList.contains("active")) {
+    // If the button is active (menu is open), close the menu
+    if (burgerButton.classList.contains("active")) {
+        closeNavBar();
+    } 
+    // Otherwise, open the menu
+    else {
+        burgerButton.classList.add("active");
+        sideNavbar.classList.add("active");
         addAnimationToNavLinks();
-    } else {
-        removeAnimationFromNavLinks();
     }
 });
 
 function closeNavBar() {
-    burgerButton.classList.remove('active');
-    sideNavbar.classList.remove('active');
-    removeAnimationFromNavLinks();
-};
+    if (burgerButton.classList.contains("active")) {
+        // Remove active state and add closing state for animation
+        burgerButton.classList.remove('active');
+        burgerButton.classList.add("closing");
+
+        sideNavbar.classList.remove('active');
+        removeAnimationFromNavLinks();
+
+        // Wait for the reverse animation to finish
+        setTimeout(() => {
+            burgerButton.classList.remove("closing");
+        }, 500); // Match the duration of rotate360-reverse
+    }
+}
 
 
 // Close navbar if clicked outside of the burger button or navbar
