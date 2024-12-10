@@ -10,8 +10,7 @@ body, html {
 body {
     background-color: #333b50;
     margin: 0;
-    font-family: Lato, Arial;
-    /* font-family: 'Avenir Light', sans-serif; */
+    font-family: 'Google Sans', 'Lato', 'Arial';
 }
 
 html {
@@ -42,6 +41,43 @@ html {
     z-index: 2;
     min-height: 100%;
     /* background-color: rgba(10, 17, 36, 0.5); */
+}
+
+#dim-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    /* background-color: rgba(0, 0, 0, 1); */
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.dimmed #dim-overlay {
+    display: block;
+    opacity: 1;
+}
+
+.dimmed .navbar,
+.dimmed .header,
+.dimmed .about-me,
+.dimmed .portfolio,
+.dimmed .contact,
+.dimmed .footer {
+    filter: brightness(0.45);
+    pointer-events: none;
+    transition: filter 0.3s ease;
+}
+
+.dimmed .navbar.scrolled {
+    background-color: transparent;
+}
+
+.dimmed .footer {
+    background-color: #333b50;
 }
 
 .content {
@@ -78,7 +114,7 @@ html {
     align-items: center;
     background-color: transparent;
     transition: background-color 0.3s ease;
-    z-index: 1000;
+    z-index: 999;
     padding-left: 17px;
     padding-right: 17px;
 }
@@ -173,6 +209,12 @@ html {
 }
 
 /* .contact .background-image {background-image: url("../images/background/notes.jpg");} */
+
+.arrow-below {
+    color: rgba(10, 17, 36, 0.54);
+    fill: rgb(255, 255, 255);
+    font-size: 16px;
+}
 
 .contact .background-color {
     background-color: rgba(10, 17, 36, 0.7);
@@ -381,6 +423,8 @@ html {
 .slides img {
     width: 100%;
     vertical-align: middle;
+    user-select: none;
+    -webkit-user-drag: none;
 }
 
 .slides-container {
@@ -388,6 +432,7 @@ html {
     position: relative;
     margin: auto;
     margin-top: 40px;
+    overflow: hidden;
 }
 
 .slides-container::before {
@@ -403,34 +448,46 @@ html {
 
 .prev,
 .next {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+
     cursor: pointer;
     position: absolute;
     top: 50%;
     width: auto;
     margin-top: -22px;
-    padding: 11px 18px 11px 18px;
+    height: 40px;
+    width: 40px;
     color: white;
     font-weight: bold;
     font-size: 18px;
     transition: 0.15s ease;
-    border-radius: 36px;
+    border-radius: 50%;
     text-align: center;
     vertical-align: center;
     user-select: none;
     z-index: 5;
-
+    display: flex;
+    justify-content: center;
+    border: none;
+    align-items: center;
+    transform: translateY(-50%);
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .prev:hover, .next:hover {
     background-color: rgba(0, 0, 0, 0.8);
+    transform: scale(1.2);
 }
 
 .prev {
-    left: 0;
+    left: 10px;
 }
 
 .next {
-    right: 0;
+    right: 10px;
 }
 
 .fade {
@@ -575,7 +632,7 @@ html {
     width: 250px;
     background-color: rgb(28, 28, 28);
     overflow: hidden;
-    z-index: 1000;
+    z-index: 1001;
     padding: 20px 10px;
     box-shadow: 2px 0 5px rgba(100, 100, 100, 0.5);
     transition: left 0.5s ease;
@@ -590,6 +647,7 @@ html {
     display: flex;
     flex-direction: column;
     gap: 20px;
+
 }
 
 .nav-links li {
@@ -600,8 +658,11 @@ html {
 .nav-links li a {
     text-decoration: none;
     color: white;
+    display: block;
+    width: 100%;
+    height: 100%;
     font-size: 1.2rem;
-    transition: color 0.3s;
+    transition: color 0.3s ease;
 }
 
 .nav-links li a:hover {
@@ -620,15 +681,26 @@ html {
 }
 
 /* Burger button default state */
+.burger-button-container {
+    position: fixed;
+    top: 0;
+    right: 17px;
+    height: 56px;
+    width: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1002;
+}
+
 .burger-button {
+    position: relative;
     display: none;
     flex-direction: column;
     justify-content: space-between;
     width: 20px;
     height: 15px;
     cursor: pointer;
-    position: relative;
-    z-index: 999;
     transition: transform 0.3s ease;
 }
 
@@ -716,6 +788,9 @@ html {
 }
 
 @media (max-width: 480px) {
+    .navbar {
+        padding-left: 0px;
+    }
     .contact .rows {
         flex-direction: column;
         padding: 18px 60px 60px 60px;
