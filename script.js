@@ -47,7 +47,7 @@ document.getElementById('contactForm').addEventListener('submit', function(event
         confirmationMessage.style.display = 'block';
         setTimeout(() => {
             confirmationMessage.style.display = 'none';
-        }, 5000);
+        }, 10000);
     })
     .catch(error => {
         console.error('Error:', error);
@@ -55,7 +55,7 @@ document.getElementById('contactForm').addEventListener('submit', function(event
         confirmationMessage.textContent = 'There was an error submitting the form. Please try again.';
         setTimeout(() => {
             confirmationMessage.style.display = 'none';
-        }, 5000);
+        }, 10000);
     });
 });
 
@@ -116,10 +116,100 @@ showSlides()
 startSlideshow()
 
 
+// If the Slide-Container Clicked or not
+let isButtonsVisible = false;
+
+const slidesContainer = document.getElementById('slides-container');
+const buttons = slidesContainer.querySelectorAll(".prev, .next");
+
+function toggleVisibility(event) {
+    
+    event.stopPropagation();
+    isButtonsVisible = !isButtonsVisible;
+
+    buttons.forEach(button => {
+        button.style.opacity = isButtonsVisible ? '1': '0';
+        button.style.pointerEvents = isButtonsVisible ? 'auto': 'none';
+    });
+}
+
+slidesContainer.addEventListener('click', toggleVisibility);
+
+// Prevent button clicks from propagating to the document or parent container
+buttons.forEach(button => {
+    button.addEventListener('click', (event) => {
+        event.stopPropagation(); // Prevent hiding on button click
+    });
+});
+
+// Hide buttons when clicking outside the parent block
+document.addEventListener('click', ()=> {
+    if (isButtonsVisible) {
+        isButtonsVisible = false;
+        buttons.forEach(button => {
+            button.style.opacity = '0';
+            button.style.pointerEvents = 'none';
+        });
+    }
+});
+
+
+// Handle hover behavior
+slidesContainer.addEventListener('mouseenter', () => {
+    if (!isButtonsVisible) {
+        buttons.forEach(button => {
+            button.style.opacity = '1';
+            button.style.pointerEvents = 'auto';
+        });
+    }
+});
+
+slidesContainer.addEventListener('mouseleave', () => {
+    if (!isButtonsVisible) {
+        buttons.forEach(button => {
+            button.style.opacity = '0';
+            button.style.pointerEvents = 'none';
+        });
+    }
+});
+
+
+// Slides Track Touch Events in Mobile Version
+let startX = 0;
+let endX = 0;
+
+slidesContainer.addEventListener('touchstart', handleTouchStart, false);
+slidesContainer.addEventListener('touchmove', handleTouchMove, false);
+slidesContainer.addEventListener('touchend', handleTouchEnd, false);
+
+function handleTouchStart(event) {
+    startX = event.touches[0].clientX;
+}
+
+function handleTouchMove(event) {
+    event.preventDefault();
+    endX = event.touches[0].clientX;
+}
+
+function handleTouchEnd() {
+    const diffX = startX - endX;
+
+    if (Math.abs(diffX) > 50) {
+        if (diffX > 0) {
+            plusSlides(1);
+        } else {
+            plusSlides(-1);
+        }
+    }
+}
+
 // Side navigation bar and burger button
 const sideNavbar = document.getElementById('side-navbar');
 const burgerButton = document.getElementById("burger-button");
 const navLinks = document.querySelectorAll(".nav-links li");
+const body = document.body;
+const dimOverlay = document.getElementById("dime-overlay");
+
 
 // Function to add animation to nav links
 function addAnimationToNavLinks() {
@@ -145,15 +235,21 @@ function removeAnimationFromNavLinks() {
 burgerButton.addEventListener('click', (e) => {
     e.stopPropagation();
 
+    
+
     // If the button is active (menu is open), close the menu
     if (burgerButton.classList.contains("active")) {
         closeNavBar();
+        body.classList.remove("dimmed");
     } 
     // Otherwise, open the menu
     else {
         burgerButton.classList.add("active");
         sideNavbar.classList.add("active");
         addAnimationToNavLinks();
+
+        // Dim the body
+        body.classList.add("dimmed");
     }
 });
 
@@ -166,6 +262,9 @@ function closeNavBar() {
         sideNavbar.classList.remove('active');
         removeAnimationFromNavLinks();
 
+        // remove dim from the  body
+        body.classList.remove("dimmed");
+        
         // Wait for the reverse animation to finish
         setTimeout(() => {
             burgerButton.classList.remove("closing");
@@ -180,6 +279,7 @@ document.addEventListener("click", (e) => {
     closeNavBar();
     }
 });
+
 
 // Reset navbar if resized above a certain width
 window.addEventListener('resize', () => {
