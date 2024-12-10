@@ -1,5 +1,35 @@
 /* Page: Resume */
 
+#dim-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    /* background-color: rgba(0, 0, 0, 1); */
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.dimmed #dim-overlay {
+    display: block;
+    opacity: 1;
+}
+
+.dimmed .navbar,
+.dimmed .header,
+.dimmed .resume,
+.dimmed .footer {
+    filter: brightness(0.45);
+    pointer-events: none;
+    transition: filter 0.3s ease;
+}
+
+.dimmed .resume {
+    background-color: #333b50;
+}
 
 .header {
     position: relative;
@@ -13,7 +43,7 @@
 }
 
 .header .background-image {  /* This may slow down the site */
-    background-image: url("../images/slides/geometric-pattern.webp");
+    /* background-image: url("../images/slides/geometric-pattern.webp"); */
     background-position: center center;
     opacity: 1;
 }
@@ -37,7 +67,7 @@
     width: 100%;
     height: 0;
     padding-top: 141.4286%;
-    padding-bottom: 0;
+    padding-bottom: 0px;
     box-shadow: 0 2px 8px 0 rgba(63, 69, 81, 0.16);
     /* margin-top: 1.6em; */
     margin-bottom: 0.9em;
@@ -61,4 +91,5 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-top: 40px;
 }
