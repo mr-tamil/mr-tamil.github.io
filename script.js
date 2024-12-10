@@ -1,9 +1,6 @@
 // select the navbar
 const navbar = document.querySelector(".navbar");
 
-// select the header
-const header = document.querySelector("#index-cover-background");
-
 let isScrolling = false;
 window.addEventListener('scroll', () => {
     if (!isScrolling) {
@@ -13,7 +10,6 @@ window.addEventListener('scroll', () => {
             } else {
                 navbar.classList.remove('scrolled');
             }
-            header.style.backgroundPositionY = `${window.scrollY * 0.5}px`;
             isScrolling = false;
         });
         isScrolling = true;
