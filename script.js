@@ -1,6 +1,9 @@
 // select the navbar
 const navbar = document.querySelector(".navbar");
 
+// select the header
+const header = document.querySelector("#index-cover-background");
+
 let isScrolling = false;
 window.addEventListener('scroll', () => {
     if (!isScrolling) {
@@ -10,6 +13,7 @@ window.addEventListener('scroll', () => {
             } else {
                 navbar.classList.remove('scrolled');
             }
+            header.style.backgroundPositionY = `${window.scrollY * 0.5}px`;
             isScrolling = false;
         });
         isScrolling = true;
@@ -40,17 +44,17 @@ document.getElementById('contactForm').addEventListener('submit', function(event
         } else {
             confirmationMessage.textContent = "There was an error submitting the form.";
         }
-        confirmationMessage.style.display = 'block';
+        confirmationMessage.style.visibility = 'visible';
         setTimeout(() => {
-            confirmationMessage.style.display = 'none';
+            confirmationMessage.style.visibility = 'hidden';
         }, 10000);
     })
     .catch(error => {
         console.error('Error:', error);
-        confirmationMessage.style.display = 'block';
         confirmationMessage.textContent = 'There was an error submitting the form. Please try again.';
+        confirmationMessage.style.visibility = 'visible';
         setTimeout(() => {
-            confirmationMessage.style.display = 'none';
+            confirmationMessage.style.visibility = 'hidden';
         }, 10000);
     });
 });
@@ -172,32 +176,50 @@ slidesContainer.addEventListener('mouseleave', () => {
 
 // Slides Track Touch Events in Mobile Version
 let startX = 0;
+let startY = 0;
 let endX = 0;
+let endY = 0;
 
 slidesContainer.addEventListener('touchstart', handleTouchStart, false);
 slidesContainer.addEventListener('touchmove', handleTouchMove, false);
 slidesContainer.addEventListener('touchend', handleTouchEnd, false);
 
 function handleTouchStart(event) {
-    startX = event.touches[0].clientX;
+    startX = event.touches[0].clientX; // Initial horizontal position
+    startY = event.touches[0].clientY; // Initial vertical position
 }
 
 function handleTouchMove(event) {
+    endX = event.touches[0].clientX; // Current horizontal position
+    endY = event.touches[0].clientY; // Current vertical position
+
+    // Determine the swipe direction
+    const diffX = Math.abs(endX - startX);
+    const diffY = Math.abs(endY - startY);
+
+    // If it's mostly a vertical swipe, allow scrolling (don't prevent default)
+    if (diffY > diffX) {
+        return; // Let the default scrolling behavior occur
+    }
+
+    // If it's mostly a horizontal swipe, prevent scrolling
     event.preventDefault();
-    endX = event.touches[0].clientX;
 }
 
 function handleTouchEnd() {
     const diffX = startX - endX;
+    const diffY = startY - endY;
 
-    if (Math.abs(diffX) > 50) {
+    // Only handle horizontal swipes
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 50) {
         if (diffX > 0) {
-            plusSlides(1);
+            plusSlides(1); // Swipe left, go to the next slide
         } else {
-            plusSlides(-1);
+            plusSlides(-1); // Swipe right, go to the previous slide
         }
     }
 }
+
 
 // Side navigation bar and burger button
 const sideNavbar = document.getElementById('side-navbar');
@@ -326,3 +348,23 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+
+// Contact Copy Link
+function copyLink(event, element) {
+    event.preventDefault();
+    const copyLink = element.getAttribute("href");
+    navigator.clipboard.writeText(copyLink).then(() => {
+        // Show the notification
+        const notifications = document.getElementById('notifications');
+        notifications.textContent = "Copied to clipboard";
+        notifications.classList.add('show');
+
+        // Hide the notification after 5 seconds
+        setTimeout(() => {
+            notifications.classList.remove('show');
+        }, 5000);
+    }).catch(err => {
+        console.error('Failed to copy text: ', err);
+    });
+}
