@@ -10,7 +10,7 @@ body, html {
 body {
     background-color: #333b50;
     margin: 0;
-    font-family: 'Google Sans', 'Lato', 'Arial';
+    font-family: 'lato', 'Google Sans', 'Arial';
 }
 
 html {
@@ -132,15 +132,24 @@ html {
     display: inline-block;
 }
 
+.navbar .icon-container a {
+    margin: 10px 12px;
+    user-select: none;
+}
 
-.navbar a {
+.navbar .buttons a {
     padding: 10px 12px;
     color: rgb(249, 249, 249);
     text-decoration: none;
     font-size: 16px;
     font-weight: 700;
+    user-select: none;
+    transition: color 0.15s ease;
 }
 
+.navbar .buttons a:hover {
+    color: #00d646;
+}
 
 /* Header */
 .header {
@@ -152,9 +161,11 @@ html {
     justify-content: center;
 }
 
+/* NOTE: Here use background-position: anything top */
 .header .background-image {
     /* background-image: url("../images/background/cover.jpg"); */
-    background-position: center top;
+    /* background-position: center top; */
+    background-position: 60% top;
     opacity: 0.45;
 }
 
@@ -214,6 +225,11 @@ html {
     color: rgba(10, 17, 36, 0.54);
     fill: rgb(255, 255, 255);
     font-size: 16px;
+    transition: fill 0.15s ease;
+}
+
+.arrow-below:hover {
+    fill: #00d646;
 }
 
 .contact .background-color {
@@ -308,7 +324,7 @@ html {
     gap: 30px;
     justify-content: space-between;
     align-items: baseline;
-    padding: 48px 100px 60px 100px;
+    padding: 48px 100px 18px 100px;
     flex-wrap: wrap;
 }
 
@@ -432,7 +448,7 @@ html {
     position: relative;
     margin: auto;
     margin-top: 40px;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .slides-container::before {
@@ -545,6 +561,7 @@ html {
     width: 100%;
     font-size: 15px;
     margin-top: 20px;
+    transition: background-color 0.15s ease;
 }
 
 .form-container button:hover {
@@ -555,7 +572,7 @@ html {
     color: green;
     font-size: 15px;
     margin-top: 15px;
-    display: none;
+    visibility: hidden;
 }
 
 .form-container p {
@@ -770,7 +787,7 @@ html {
 
 @media (max-width: 930px) {
     .contact .rows {
-        padding: 28px 70px 60px 70px;
+        padding: 28px 70px 30px 70px;
     }
 }
 
@@ -791,9 +808,13 @@ html {
     .navbar {
         padding-left: 0px;
     }
+    .navbar .icon-container a {
+        margin: 10px 8px;
+    }
+
     .contact .rows {
         flex-direction: column;
-        padding: 18px 60px 60px 60px;
+        padding: 18px 60px 20px 60px;
     }
     .contact .floating-box {
         padding-bottom: 40px;
@@ -810,7 +831,7 @@ html {
 @media (max-width: 400px) {
     .contact .rows {
         flex-direction: column;
-        padding: 0px 40px 60px 40px;
+        padding: 0px 40px 20px 40px;
     }
     .contact .floating-box {
         padding-bottom: 40px;
@@ -858,4 +879,75 @@ html {
 /* Optional: Corner styling (where horizontal & vertical scrollbars meet) */
 ::-webkit-scrollbar-corner {
     background: #f5f5f5; /* Match track background */
+}
+
+.tool {
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.tool:hover {
+    transform: scale(1.1);
+}
+
+.tool::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: black;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 999;
+    transform: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.tool:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.copy-link {
+    position: absolute;
+    top: -6px;
+    opacity: 0;
+    margin-left: 10px;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.contact .title:hover .copy-link {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.notifications {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 1000;
+}
+
+.notifications.show {
+    opacity: 1;
+    visibility: visible;
 }
