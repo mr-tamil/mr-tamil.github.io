@@ -927,6 +927,13 @@ html {
     visibility: visible;
 }
 
+@media (min-width: 768px) {
+    .about-me .text,
+    .copyrights .text {
+        font-size: 1.167rem;
+    }
+}
+
 @media (max-width: 480px) {
     .skill-name, .percentage
         {font-size: 15px;}
@@ -1035,7 +1042,7 @@ h3 {font-size: 2.000rem; line-height: 2.76rem;}
       {font-size: 0.972rem; line-height: 1.604rem;}
 }
 
-@media (max-width: 440px) {
+@media (max-width: 480px) {
    h1 {font-size: 2.250rem; line-height: 3.105rem;}
    h4 {font-size: 1.195rem; line-height: 1.792rem;}
    h3 {font-size: 1.667rem; line-height: 2.260rem;}
