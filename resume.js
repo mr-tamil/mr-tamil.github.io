@@ -4,7 +4,7 @@ const navbar = document.querySelector(".navbar");
 let isScrolling = false;
 window.addEventListener('scroll', () => {
     if (!isScrolling) {
-        window.requestAnimationFrame(()=> {
+        window.requestAnimationFrame(() => {
             if (window.scrollY > 0) {
                 navbar.classList.add("scrolled");
             } else {
@@ -49,13 +49,13 @@ function removeAnimationFromNavLinks() {
 burgerButton.addEventListener('click', (e) => {
     e.stopPropagation();
 
-    
+
 
     // If the button is active (menu is open), close the menu
     if (burgerButton.classList.contains("active")) {
         closeNavBar();
         body.classList.remove("dimmed");
-    } 
+    }
     // Otherwise, open the menu
     else {
         burgerButton.classList.add("active");
@@ -78,7 +78,7 @@ function closeNavBar() {
 
         // remove dim from the  body
         body.classList.remove("dimmed");
-        
+
         // Wait for the reverse animation to finish
         setTimeout(() => {
             burgerButton.classList.remove("closing");
@@ -90,7 +90,7 @@ function closeNavBar() {
 // Close navbar if clicked outside of the burger button or navbar
 document.addEventListener("click", (e) => {
     if (!sideNavbar.contains(e.target) && !burgerButton.contains(e.target)) {
-    closeNavBar();
+        closeNavBar();
     }
 });
 

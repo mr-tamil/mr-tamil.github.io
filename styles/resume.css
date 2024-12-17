@@ -48,7 +48,8 @@
     }
 }
 
-.header .background-image {  /* This may slow down the site */
+.header .background-image {
+    /* This may slow down the site */
     /* background-image: url("../images/slides/geometric-pattern.webp"); */
     background-position: center center;
     opacity: 1;
@@ -62,7 +63,7 @@
     margin-top: 56px;
     transform: translateY(-56px);
     text-align: center;
-    color: rgb(249,249,249);
+    color: rgb(249, 249, 249);
 }
 
 /* SECTION: resume */

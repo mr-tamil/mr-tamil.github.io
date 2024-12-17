@@ -7,7 +7,7 @@ const header = document.querySelector("#index-cover-background");
 let isScrolling = false;
 window.addEventListener('scroll', () => {
     if (!isScrolling) {
-        window.requestAnimationFrame(()=> {
+        window.requestAnimationFrame(() => {
             if (window.scrollY > 0) {
                 navbar.classList.add("scrolled");
             } else {
@@ -22,7 +22,7 @@ window.addEventListener('scroll', () => {
 
 
 // Form submission handling
-document.getElementById('contactForm').addEventListener('submit', function(event) {
+document.getElementById('contactForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
     let form = event.target;
@@ -33,30 +33,30 @@ document.getElementById('contactForm').addEventListener('submit', function(event
         method: 'POST',
         body: formData,
         headers: {
-        'Accept': 'application/json'
+            'Accept': 'application/json'
         }
     })
-    .then(response => {
-        if (response.ok) {
-            confirmationMessage.textContent = "I'll respond promptly";
-            form.reset();
+        .then(response => {
+            if (response.ok) {
+                confirmationMessage.textContent = "I'll respond promptly";
+                form.reset();
 
-        } else {
-            confirmationMessage.textContent = "There was an error submitting the form.";
-        }
-        confirmationMessage.style.visibility = 'visible';
-        setTimeout(() => {
-            confirmationMessage.style.visibility = 'hidden';
-        }, 10000);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        confirmationMessage.textContent = 'There was an error submitting the form. Please try again.';
-        confirmationMessage.style.visibility = 'visible';
-        setTimeout(() => {
-            confirmationMessage.style.visibility = 'hidden';
-        }, 10000);
-    });
+            } else {
+                confirmationMessage.textContent = "There was an error submitting the form.";
+            }
+            confirmationMessage.style.visibility = 'visible';
+            setTimeout(() => {
+                confirmationMessage.style.visibility = 'hidden';
+            }, 10000);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            confirmationMessage.textContent = 'There was an error submitting the form. Please try again.';
+            confirmationMessage.style.visibility = 'visible';
+            setTimeout(() => {
+                confirmationMessage.style.visibility = 'hidden';
+            }, 10000);
+        });
 });
 
 
@@ -69,18 +69,18 @@ function showSlides() {
     let slides = document.getElementsByClassName("slides");
     let slides_title = document.getElementsByClassName("slides-title");
 
-    for (let i=0; i<slides.length; i++) {
-        slides[i].style.display="none";
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
     }
 
-    for (let i=0; i<slides_title.length; i++) {
-        slides_title[i].style.display="none";
+    for (let i = 0; i < slides_title.length; i++) {
+        slides_title[i].style.display = "none";
     }
 
     slideIndex++;
-    if (slideIndex > slides.length) {slideIndex=1;}
-    slides[slideIndex-1].style.display="block";
-    slides_title[slideIndex-1].style.display="block";
+    if (slideIndex > slides.length) { slideIndex = 1; }
+    slides[slideIndex - 1].style.display = "block";
+    slides_title[slideIndex - 1].style.display = "block";
 }
 
 function startSlideshow() {
@@ -101,14 +101,14 @@ function plusSlides(n) {
         slideIndex = slides.length;
     }
 
-    for (let i=0; i<slides.length; i++) {
-        slides[i].style.display="none";
+    for (let i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
     }
-    for (let i=0; i<slides_title.length; i++) {
-        slides_title[i].style.display="none";
+    for (let i = 0; i < slides_title.length; i++) {
+        slides_title[i].style.display = "none";
     }
-    slides[slideIndex-1].style.display="block";
-    slides_title[slideIndex-1].style.display="block";
+    slides[slideIndex - 1].style.display = "block";
+    slides_title[slideIndex - 1].style.display = "block";
     startSlideshow()
 }
 
@@ -123,13 +123,13 @@ const slidesContainer = document.getElementById('slides-container');
 const buttons = slidesContainer.querySelectorAll(".prev, .next");
 
 function toggleVisibility(event) {
-    
+
     event.stopPropagation();
     isButtonsVisible = !isButtonsVisible;
 
     buttons.forEach(button => {
-        button.style.opacity = isButtonsVisible ? '1': '0';
-        button.style.pointerEvents = isButtonsVisible ? 'auto': 'none';
+        button.style.opacity = isButtonsVisible ? '1' : '0';
+        button.style.pointerEvents = isButtonsVisible ? 'auto' : 'none';
     });
 }
 
@@ -143,7 +143,7 @@ buttons.forEach(button => {
 });
 
 // Hide buttons when clicking outside the parent block
-document.addEventListener('click', ()=> {
+document.addEventListener('click', () => {
     if (isButtonsVisible) {
         isButtonsVisible = false;
         buttons.forEach(button => {
@@ -253,13 +253,13 @@ function removeAnimationFromNavLinks() {
 burgerButton.addEventListener('click', (e) => {
     e.stopPropagation();
 
-    
+
 
     // If the button is active (menu is open), close the menu
     if (burgerButton.classList.contains("active")) {
         closeNavBar();
         body.classList.remove("dimmed");
-    } 
+    }
     // Otherwise, open the menu
     else {
         burgerButton.classList.add("active");
@@ -282,7 +282,7 @@ function closeNavBar() {
 
         // remove dim from the  body
         body.classList.remove("dimmed");
-        
+
         // Wait for the reverse animation to finish
         setTimeout(() => {
             burgerButton.classList.remove("closing");
@@ -294,7 +294,7 @@ function closeNavBar() {
 // Close navbar if clicked outside of the burger button or navbar
 document.addEventListener("click", (e) => {
     if (!sideNavbar.contains(e.target) && !burgerButton.contains(e.target)) {
-    closeNavBar();
+        closeNavBar();
     }
 });
 
@@ -372,27 +372,26 @@ function copyLink(event, element) {
 document.addEventListener("DOMContentLoaded", () => {
     // Select all progress bars
     const progressBars = document.querySelectorAll('.progress-bar');
-  
+
     // Create an Intersection Observer
     const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          // Get the target progress bar
-          const progressBar = entry.target;
-  
-          // Read the data-percentage attribute
-          const percentage = progressBar.getAttribute('data-percentage');
-  
-          // Set the width to the percentage value
-          progressBar.style.width = percentage + '%';
-  
-          // Unobserve the progress bar after the animation is triggered
-          observer.unobserve(progressBar);
-        }
-      });
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Get the target progress bar
+                const progressBar = entry.target;
+
+                // Read the data-percentage attribute
+                const percentage = progressBar.getAttribute('data-percentage');
+
+                // Set the width to the percentage value
+                progressBar.style.width = percentage + '%';
+
+                // Unobserve the progress bar after the animation is triggered
+                observer.unobserve(progressBar);
+            }
+        });
     });
-  
+
     // Observe each progress bar
     progressBars.forEach(bar => observer.observe(bar));
-  });
-  
+});

@@ -1,13 +1,18 @@
 /* General */
 
-body, html {
+body,
+html {
     overflow-x: hidden;
 }
-*, *::before {
+
+*,
+*::before {
     box-sizing: border-box;
 }
 
-button, a, input {
+button,
+a,
+input {
     -webkit-tap-highlight-color: transparent;
     outline: none;
 }
@@ -191,7 +196,7 @@ html {
 
 .main-header .text h4 {
     font-weight: 300;
-    color: rgb(249,249,249);
+    color: rgb(249, 249, 249);
 }
 
 .main-header .content a {
@@ -289,15 +294,15 @@ html {
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    margin-bottom: 10px; /* best use 70px (here 30px) use 40px below */
+    margin-bottom: 10px;
+    /* best use 70px (here 30px) use 40px below */
 }
 
 .section-card-number {
     color: rgb(190, 199, 213);
 }
 
-.catd-title
-.card-desc {
+.catd-title .card-desc {
     margin: 0;
     color: rgb(249, 249, 249);
     text-align: center;
@@ -465,7 +470,7 @@ html {
     color: rgb(249, 249, 249);
 }
 
-.slides-title p{
+.slides-title p {
     font-size: 0.667rem;
     line-height: auto;
     /* font-family: Avenir; */
@@ -529,7 +534,8 @@ html {
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.prev:hover, .next:hover {
+.prev:hover,
+.next:hover {
     background-color: rgba(0, 0, 0, 0.8);
     transform: scale(1.2);
 }
@@ -548,8 +554,13 @@ html {
 }
 
 @keyframes fadeIn {
-    from {opacity: 0.4;}
-    to {opacity: 1;}
+    from {
+        opacity: 0.4;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 /* Form Container */
@@ -557,6 +568,7 @@ html {
     flex: 1;
     width: 100%;
 }
+
 .form-container {
     max-width: 400px;
     margin: 0 auto;
@@ -728,6 +740,7 @@ html {
         opacity: 0;
         transform: translateX(-30px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -762,7 +775,8 @@ html {
     display: block;
     height: 2px;
     width: 100%;
-    background-color: rgba(255, 255, 255, 1); /* Default color */
+    background-color: rgba(255, 255, 255, 1);
+    /* Default color */
     /* border-radius: 3px; */
     transition: all 0.5s ease;
 }
@@ -782,6 +796,7 @@ html {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
@@ -792,6 +807,7 @@ html {
     from {
         transform: rotate(360deg);
     }
+
     to {
         transform: rotate(0deg);
     }
@@ -803,7 +819,8 @@ html {
 }
 
 .burger-button.active span:nth-child(2) {
-    opacity: 0; /* Hide the middle line */
+    opacity: 0;
+    /* Hide the middle line */
 }
 
 .burger-button.active span:nth-child(3) {
@@ -817,7 +834,8 @@ html {
 }
 
 .burger-button.closing span:nth-child(2) {
-    opacity: 1; /* Restore the middle line */
+    opacity: 1;
+    /* Restore the middle line */
 }
 
 
@@ -832,28 +850,36 @@ html {
 
 /* WebKit-based browsers (Chrome, Edge, Safari) */
 ::-webkit-scrollbar {
-    width: 10px; /* Thin scrollbar */
-    height: 10px; /* Thin horizontal scrollbar */
+    width: 10px;
+    /* Thin scrollbar */
+    height: 10px;
+    /* Thin horizontal scrollbar */
 }
 
 ::-webkit-scrollbar-track {
-    background: #f5f5f5; /* Light background for the track */
+    background: #f5f5f5;
+    /* Light background for the track */
     /* border-radius: 10px; */
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #bfbfbf; /* Stylish gradient thumb */
-    border-radius: 10px; /* Rounded thumb for modern look */
-    border: 2px solid #f5f5f5; /* Creates space around the thumb */
+    background: #bfbfbf;
+    /* Stylish gradient thumb */
+    border-radius: 10px;
+    /* Rounded thumb for modern look */
+    border: 2px solid #f5f5f5;
+    /* Creates space around the thumb */
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(45deg, #b0b0b0, #a3a3a3); /* Hover effect with gradient reversal */
+    background: linear-gradient(45deg, #b0b0b0, #a3a3a3);
+    /* Hover effect with gradient reversal */
 }
 
 /* Optional: Corner styling (where horizontal & vertical scrollbars meet) */
 ::-webkit-scrollbar-corner {
-    background: #f5f5f5; /* Match track background */
+    background: #f5f5f5;
+    /* Match track background */
 }
 
 .tool {
@@ -928,6 +954,7 @@ html {
 }
 
 @media (min-width: 768px) {
+
     .about-me .text,
     .copyrights .text {
         font-size: 1.167rem;
@@ -935,8 +962,11 @@ html {
 }
 
 @media (max-width: 480px) {
-    .skill-name, .percentage
-        {font-size: 15px;}
+
+    .skill-name,
+    .percentage {
+        font-size: 15px;
+    }
 }
 
 @media (max-width:1200px) {
@@ -955,18 +985,23 @@ html {
     .main-header .text {
         margin-left: 0;
     }
+
     .burger-button {
         display: flex;
     }
+
     .navbar .buttons {
         display: none;
     }
+
     .contact .rows {
         flex-direction: column;
     }
+
     .main-header .content {
         padding-left: 40px;
     }
+
     .about-me .floating-box {
         max-width: 600px;
     }
@@ -976,6 +1011,7 @@ html {
     .navbar {
         padding-left: 0px;
     }
+
     .navbar .icon-container a {
         margin: 10px 8px;
     }
@@ -984,12 +1020,16 @@ html {
         flex-direction: column;
         padding: 18px 60px 20px 60px;
     }
+
     .contact .floating-box {
         padding-bottom: 40px;
     }
+
     .content {
-        padding: 30px;  /* Todo: change to 20px later */
+        padding: 30px;
+        /* Todo: change to 20px later */
     }
+
     .about-me .floating-box {
         padding: 48px 40px 60px 40px;
     }
@@ -1000,15 +1040,19 @@ html {
         flex-direction: column;
         padding: 0px 40px 20px 40px;
     }
+
     .contact .floating-box {
         padding-bottom: 40px;
     }
+
     .content {
         padding: 20px;
     }
+
     .main-header .content {
         padding-bottom: 30px;
     }
+
     .about-me .floating-box {
         padding: 48px 30px 60px 30px;
     }
@@ -1020,36 +1064,100 @@ html {
     }
 }
 
-h1, h2, h3, h4, h5, h6, p {overflow-wrap: break-word;}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    overflow-wrap: break-word;
+}
 
-p  {font-size: 1.000rem; line-height: 1.500rem; font-weight: 400;}
-h1 {font-size: 3.000rem; line-height: 4.14rem;}
-h4 {font-size: 1.500rem; line-height: 2.25rem;}
-h3 {font-size: 2.000rem; line-height: 2.76rem;}
+p {
+    font-size: 1.000rem;
+    line-height: 1.500rem;
+    font-weight: 400;
+}
 
-.card-title
-   {font-size: 2.000rem; line-height: 3.000rem; font-weight: 900;}
-.card-desc
-   {font-size: 1.166rem; line-height: 1.75rem; font-weight: 400;}
+h1 {
+    font-size: 3.000rem;
+    line-height: 4.14rem;
+}
+
+h4 {
+    font-size: 1.500rem;
+    line-height: 2.25rem;
+}
+
+h3 {
+    font-size: 2.000rem;
+    line-height: 2.76rem;
+}
+
+.card-title {
+    font-size: 2.000rem;
+    line-height: 3.000rem;
+    font-weight: 900;
+}
+
+.card-desc {
+    font-size: 1.166rem;
+    line-height: 1.75rem;
+    font-weight: 400;
+}
 
 @media (max-width: 768px) {
-   h1 {font-size: 2.666rem; line-height: 3.680rem;}
-   h4 {font-size: 1.416rem; line-height: 2.125rem;}
-   h3 {font-size: 1.854rem; line-height: 2.51rem;}
-   .card-title
-      {font-size: 1.854rem; line-height: 2.750rem;}
-   .card-desc
-      {font-size: 0.972rem; line-height: 1.604rem;}
+    h1 {
+        font-size: 2.666rem;
+        line-height: 3.680rem;
+    }
+
+    h4 {
+        font-size: 1.416rem;
+        line-height: 2.125rem;
+    }
+
+    h3 {
+        font-size: 1.854rem;
+        line-height: 2.51rem;
+    }
+
+    .card-title {
+        font-size: 1.854rem;
+        line-height: 2.750rem;
+    }
+
+    .card-desc {
+        font-size: 0.972rem;
+        line-height: 1.604rem;
+    }
 }
 
 @media (max-width: 480px) {
-   h1 {font-size: 2.250rem; line-height: 3.105rem;}
-   h4 {font-size: 1.195rem; line-height: 1.792rem;}
-   h3 {font-size: 1.667rem; line-height: 2.260rem;}
-   .card-title
-      {font-size: 1.667rem; line-height: 2.500rem;}
+    h1 {
+        font-size: 2.250rem;
+        line-height: 3.105rem;
+    }
+
+    h4 {
+        font-size: 1.195rem;
+        line-height: 1.792rem;
+    }
+
+    h3 {
+        font-size: 1.667rem;
+        line-height: 2.260rem;
+    }
+
+    .card-title {
+        font-size: 1.667rem;
+        line-height: 2.500rem;
+    }
 }
 
 @media (max-width:370px) {
-   h1 {font-size: 2rem;}
+    h1 {
+        font-size: 2rem;
+    }
 }
