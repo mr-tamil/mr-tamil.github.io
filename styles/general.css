@@ -901,6 +901,7 @@ html {
     transform: translateX(-50%);
     background-color: black;
     color: white;
+    line-height: 1.2;
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 14px;
