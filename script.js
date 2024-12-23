@@ -26,32 +26,31 @@ document.getElementById('contactForm').addEventListener('submit', function (even
     event.preventDefault();
 
     let form = event.target;
-    let formData = new FormData(form);
+    let formData = new FormData();
+    formData.append("entry.1593575971", document.getElementById("name").value);
+    formData.append("entry.1135759793", document.getElementById("email").value);
+    formData.append("entry.534005243", document.getElementById("message").value);
+    formData.append("entry.1442153799", document.getElementById("phone").value);
+
     const confirmationMessage = document.querySelector('.confirmation-message');
 
-    fetch('https://formspree.io/f/xnnqvwnv', {
+    fetch('https://docs.google.com/forms/d/e/1FAIpQLSdID-8OU5sZRHKM89u_B1iL5cM5PWYaBSCS0My0YcH23Mjf4Q/formResponse', {
         method: 'POST',
         body: formData,
-        headers: {
-            'Accept': 'application/json'
-        }
+        mode: "no-cors"
     })
-        .then(response => {
-            if (response.ok) {
-                confirmationMessage.textContent = "I'll respond promptly";
-                form.reset();
-
-            } else {
-                confirmationMessage.textContent = "There was an error submitting the form.";
-            }
+        .then(() => {
+            confirmationMessage.textContent = "I'll respond promptly";
+            form.reset();
             confirmationMessage.style.visibility = 'visible';
+
             setTimeout(() => {
                 confirmationMessage.style.visibility = 'hidden';
             }, 10000);
         })
         .catch(error => {
             console.error('Error:', error);
-            confirmationMessage.textContent = 'There was an error submitting the form. Please try again.';
+            confirmationMessage.textContent = 'There was an error submitting the form.';
             confirmationMessage.style.visibility = 'visible';
             setTimeout(() => {
                 confirmationMessage.style.visibility = 'hidden';
